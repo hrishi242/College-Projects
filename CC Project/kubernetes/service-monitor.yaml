@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: url-shortener-monitor
+  labels:
+    release: prometheus # Must match your Prometheus install
+spec:
+  endpoints:
+  - port: metrics # Matches your service port name
+    path: /metrics
+  selector:
+    matchLabels:
+      app: url-shortener # Matches your app's service
